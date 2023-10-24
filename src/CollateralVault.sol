@@ -30,9 +30,6 @@ contract CollateralVault is EIP712 {
     // The stable asset loaned out
     ERC20 public immutable stableToken;
 
-    // The asset vault address. Typically holds the stable that is being lent
-    address public immutable stableVault;
-
     // TODO add Nonce to prevent replay attack
 
     error NotEnoughCollateral();
@@ -46,9 +43,8 @@ contract CollateralVault is EIP712 {
             revert NotBorrower();
         _;
     }
-    constructor(address _acceptedNFT, address _stableVault, address _stableToken, address _borrower) EIP712("CollateralVault", "1"){
+    constructor(address _acceptedNFT, address _stableToken, address _borrower) EIP712("CollateralVault", "1"){
         acceptedNFT = ERC721(_acceptedNFT);
-        stableVault = _stableVault;
         stableToken = ERC20(_stableToken);
         borrower = _borrower;
     }

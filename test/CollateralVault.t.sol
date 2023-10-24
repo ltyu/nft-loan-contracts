@@ -20,7 +20,7 @@ contract CollateralVaultTest is Test {
         acceptedNFT = new PunkNFT(alice);
         usdc = new StableToken();
         usdc.mint(alice, 1000 ether);
-        collateralVault = new CollateralVault(address(acceptedNFT), stableVault, address(usdc), alice);
+        collateralVault = new CollateralVault(address(acceptedNFT), address(usdc), alice);
     }
 
     function test_LocksNFT() public {
